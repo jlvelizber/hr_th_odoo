@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_payroll_periods" model="ir.ui.view">
+        <field name="name">res.partner.form.payroll.periods</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="hr_service_management.view_partner_form_th_services"/>
+        <field name="arch" type="xml">
+            <button name="action_view_th_applicants" position="after">
+                <button type="object" name="action_view_th_payroll_periods" class="oe_stat_button" icon="fa-calendar-check-o" invisible="not is_company">
+                    <field name="th_open_payroll_period_count" widget="statinfo" string="Nóminas abiertas"/>
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>

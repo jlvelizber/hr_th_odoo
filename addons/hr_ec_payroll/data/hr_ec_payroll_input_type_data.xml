@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="input_type_overtime" model="hr.ec.payroll.input.type">
+        <field name="name">Horas extras</field>
+        <field name="code">overtime</field>
+        <field name="category">time</field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="input_type_supplement" model="hr.ec.payroll.input.type">
+        <field name="name">Horas suplementarias</field>
+        <field name="code">supplement</field>
+        <field name="category">time</field>
+        <field name="sequence">20</field>
+    </record>
+    <record id="input_type_absence" model="hr.ec.payroll.input.type">
+        <field name="name">Ausencia</field>
+        <field name="code">absence</field>
+        <field name="category">time</field>
+        <field name="sequence">30</field>
+    </record>
+    <record id="input_type_vacation" model="hr.ec.payroll.input.type">
+        <field name="name">Vacaciones</field>
+        <field name="code">vacation</field>
+        <field name="category">time</field>
+        <field name="sequence">40</field>
+    </record>
+    <record id="input_type_bonus" model="hr.ec.payroll.input.type">
+        <field name="name">Bonificación</field>
+        <field name="code">bonus</field>
+        <field name="category">earning</field>
+        <field name="sequence">50</field>
+    </record>
+    <record id="input_type_commission" model="hr.ec.payroll.input.type">
+        <field name="name">Comisión</field>
+        <field name="code">commission</field>
+        <field name="category">earning</field>
+        <field name="sequence">60</field>
+    </record>
+    <record id="input_type_deduction" model="hr.ec.payroll.input.type">
+        <field name="name">Descuento</field>
+        <field name="code">deduction</field>
+        <field name="category">deduction</field>
+        <field name="sequence">70</field>
+    </record>
+    <record id="input_type_advance" model="hr.ec.payroll.input.type">
+        <field name="name">Anticipo</field>
+        <field name="code">advance</field>
+        <field name="category">deduction</field>
+        <field name="sequence">80</field>
+    </record>
+    <record id="input_type_loan" model="hr.ec.payroll.input.type">
+        <field name="name">Préstamo</field>
+        <field name="code">loan</field>
+        <field name="category">deduction</field>
+        <field name="sequence">90</field>
+    </record>
+    <record id="input_type_other_in" model="hr.ec.payroll.input.type">
+        <field name="name">Otros ingresos</field>
+        <field name="code">other_in</field>
+        <field name="category">earning</field>
+        <field name="sequence">100</field>
+    </record>
+    <record id="input_type_other_out" model="hr.ec.payroll.input.type">
+        <field name="name">Otros descuentos</field>
+        <field name="code">other_out</field>
+        <field name="category">deduction</field>
+        <field name="sequence">110</field>
+    </record>
+</odoo>

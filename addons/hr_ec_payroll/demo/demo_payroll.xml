@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_payroll_period_sep2026" model="hr.ec.payroll.period">
+        <field name="partner_id" ref="hr_service_management.demo_partner_empresa_xyz"/>
+        <field name="service_contract_id" ref="hr_service_management.demo_contract_payroll"/>
+        <field name="date_start">2026-09-01</field>
+        <field name="date_end">2026-09-30</field>
+        <field name="state">processing</field>
+        <field name="project_id" ref="hr_service_management.demo_payroll_project_sep2026"/>
+    </record>
+
+    <record id="demo_payroll_input_1" model="hr.ec.payroll.input">
+        <field name="period_id" ref="demo_payroll_period_sep2026"/>
+        <field name="employee_id" ref="hr_service_management.demo_employee_1"/>
+        <field name="input_type_id" ref="input_type_overtime"/>
+        <field name="name">2 horas extras día 10</field>
+        <field name="quantity">2</field>
+        <field name="state">confirmed</field>
+    </record>
+</odoo>

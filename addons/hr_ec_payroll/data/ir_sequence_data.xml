@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_hr_ec_payroll_period" model="ir.sequence">
+        <field name="name">Período nómina TH</field>
+        <field name="code">hr.ec.payroll.period</field>
+        <field name="prefix">NOM/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

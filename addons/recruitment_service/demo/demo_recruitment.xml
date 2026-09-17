@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_profile_receptionist" model="hr.job.profile.template">
+        <field name="name">Recepcionista</field>
+        <field name="description"><![CDATA[<p>Atención al cliente, recepción telefónica y apoyo administrativo.</p>]]></field>
+    </record>
+
+    <record id="demo_profile_task_1" model="hr.job.profile.template.task">
+        <field name="template_id" ref="demo_profile_receptionist"/>
+        <field name="sequence">10</field>
+        <field name="name">Levantar perfil</field>
+    </record>
+    <record id="demo_profile_task_2" model="hr.job.profile.template.task">
+        <field name="template_id" ref="demo_profile_receptionist"/>
+        <field name="sequence">20</field>
+        <field name="name">Publicar vacante</field>
+    </record>
+    <record id="demo_profile_task_3" model="hr.job.profile.template.task">
+        <field name="template_id" ref="demo_profile_receptionist"/>
+        <field name="sequence">30</field>
+        <field name="name">Revisar CV</field>
+    </record>
+
+    <record id="demo_job_receptionist" model="hr.job">
+        <field name="name">Recepcionista</field>
+        <field name="client_partner_id" ref="hr_service_management.demo_partner_empresa_xyz"/>
+        <field name="service_contract_id" ref="hr_service_management.demo_contract_recruitment"/>
+        <field name="profile_template_id" ref="demo_profile_receptionist"/>
+        <field name="no_of_recruitment">1</field>
+    </record>
+
+    <record id="demo_selection_project" model="project.project">
+        <field name="name">Selección: Recepcionista — Empresa XYZ S.A.</field>
+        <field name="partner_id" ref="hr_service_management.demo_partner_empresa_xyz"/>
+        <field name="service_contract_id" ref="hr_service_management.demo_contract_recruitment"/>
+    </record>
+    <record id="demo_selection_task_1" model="project.task">
+        <field name="name">Levantar perfil</field>
+        <field name="project_id" ref="demo_selection_project"/>
+        <field name="state">1_done</field>
+    </record>
+    <record id="demo_selection_task_2" model="project.task">
+        <field name="name">Publicar vacante</field>
+        <field name="project_id" ref="demo_selection_project"/>
+        <field name="state">1_done</field>
+    </record>
+    <record id="demo_selection_task_3" model="project.task">
+        <field name="name">Revisar CV</field>
+        <field name="project_id" ref="demo_selection_project"/>
+    </record>
+
+    <function model="hr.job" name="write">
+        <value eval="[ref('demo_job_receptionist')]"/>
+        <value eval="{'th_project_id': ref('demo_selection_project')}"/>
+    </function>
+
+    <record id="demo_applicant_1" model="hr.applicant">
+        <field name="partner_name">Ana Demo Uno</field>
+        <field name="email_from">ana.demo1@example.com</field>
+        <field name="job_id" ref="demo_job_receptionist"/>
+    </record>
+    <record id="demo_applicant_2" model="hr.applicant">
+        <field name="partner_name">Bruno Demo Dos</field>
+        <field name="email_from">bruno.demo2@example.com</field>
+        <field name="job_id" ref="demo_job_receptionist"/>
+    </record>
+    <record id="demo_applicant_3" model="hr.applicant">
+        <field name="partner_name">Carla Demo Tres</field>
+        <field name="email_from">carla.demo3@example.com</field>
+        <field name="job_id" ref="demo_job_receptionist"/>
+    </record>
+    <record id="demo_applicant_4" model="hr.applicant">
+        <field name="partner_name">Diego Demo Cuatro</field>
+        <field name="email_from">diego.demo4@example.com</field>
+        <field name="job_id" ref="demo_job_receptionist"/>
+    </record>
+    <record id="demo_applicant_5" model="hr.applicant">
+        <field name="partner_name">Elena Demo Cinco</field>
+        <field name="email_from">elena.demo5@example.com</field>
+        <field name="job_id" ref="demo_job_receptionist"/>
+    </record>
+</odoo>

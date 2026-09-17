@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="mail_activity_type_call_client" model="mail.activity.type">
+        <field name="name">Llamar al cliente</field>
+        <field name="icon">fa-phone</field>
+        <field name="delay_count">0</field>
+        <field name="category">phonecall</field>
+    </record>
+    <record id="mail_activity_type_request_payroll_news" model="mail.activity.type">
+        <field name="name">Solicitar novedades de nómina</field>
+        <field name="icon">fa-money</field>
+        <field name="delay_count">0</field>
+    </record>
+    <record id="mail_activity_type_request_document" model="mail.activity.type">
+        <field name="name">Solicitar documento</field>
+        <field name="icon">fa-file-o</field>
+        <field name="delay_count">0</field>
+    </record>
+</odoo>

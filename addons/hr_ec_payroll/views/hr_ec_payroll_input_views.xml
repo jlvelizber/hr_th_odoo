@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_ec_payroll_input_tree" model="ir.ui.view">
+        <field name="name">hr.ec.payroll.input.tree</field>
+        <field name="model">hr.ec.payroll.input</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="period_id"/>
+                <field name="partner_id"/>
+                <field name="employee_id"/>
+                <field name="input_type_id"/>
+                <field name="name"/>
+                <field name="quantity"/>
+                <field name="amount"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_ec_payroll_input_form" model="ir.ui.view">
+        <field name="name">hr.ec.payroll.input.form</field>
+        <field name="model">hr.ec.payroll.input</field>
+        <field name="arch" type="xml">
+            <form string="Novedad">
+                <header>
+                    <button name="action_confirm" string="Confirmar" type="object" invisible="state != 'draft'"/>
+                    <button name="action_cancel" string="Anular" type="object" invisible="state != 'confirmed'"/>
+                    <button name="action_draft" string="Borrador" type="object" invisible="state != 'cancelled'"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="period_id"/>
+                        <field name="partner_id"/>
+                        <field name="employee_id"/>
+                        <field name="input_type_id"/>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="quantity"/>
+                        <field name="amount"/>
+                    </group>
+                    <field name="notes"/>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_ec_payroll_input" model="ir.actions.act_window">
+        <field name="name">Novedades de nómina</field>
+        <field name="res_model">hr.ec.payroll.input</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hr_ec_payroll_input_type" model="ir.actions.act_window">
+        <field name="name">Tipos de novedad</field>
+        <field name="res_model">hr.ec.payroll.input.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="view_hr_ec_payroll_input_type_tree" model="ir.ui.view">
+        <field name="name">hr.ec.payroll.input.type.tree</field>
+        <field name="model">hr.ec.payroll.input.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="category"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

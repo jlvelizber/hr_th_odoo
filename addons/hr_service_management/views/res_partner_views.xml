@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_th_services" model="ir.ui.view">
+        <field name="name">res.partner.form.th.services</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button type="object" name="action_view_th_service_contracts" class="oe_stat_button" icon="fa-briefcase" invisible="not is_company">
+                    <field name="th_active_service_count" widget="statinfo" string="Servicios activos"/>
+                </button>
+                <button type="object" name="action_view_th_projects" class="oe_stat_button" icon="fa-tasks" invisible="not is_company">
+                    <field name="th_project_count" widget="statinfo" string="Proyectos"/>
+                </button>
+                <button type="object" name="action_view_th_client_employees" class="oe_stat_button" icon="fa-users" invisible="not is_company">
+                    <field name="th_client_employee_count" widget="statinfo" string="Colaboradores"/>
+                </button>
+                <button type="object" name="action_view_th_documents" class="oe_stat_button" icon="fa-folder-open" invisible="not is_company">
+                    <field name="th_missing_document_count" widget="statinfo" string="Docs pendientes"/>
+                </button>
+                <button type="object" name="action_view_th_applicants" class="oe_stat_button" icon="fa-user-plus" invisible="not is_company">
+                    <span class="o_stat_text">Candidatos</span>
+                </button>
+            </div>
+            <page name="sales_purchases" position="after">
+                <page string="Talento Humano" invisible="not is_company">
+                    <group>
+                        <field name="th_client_status"/>
+                        <field name="th_commercial_name"/>
+                        <field name="th_approx_headcount"/>
+                    </group>
+                    <group>
+                        <button name="action_th_init_documents" type="object" string="Inicializar expediente documental" class="btn-primary"/>
+                    </group>
+                    <field name="th_document_ids" nolabel="1" context="{'default_partner_id': id}">
+                        <tree editable="bottom">
+                            <field name="section_id" domain="[('scope', '=', 'client')]"/>
+                            <field name="name"/>
+                            <field name="state"/>
+                            <field name="file_name"/>
+                            <field name="file_data" filename="file_name"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="action_th_clients" model="ir.actions.act_window">
+        <field name="name">Clientes TH</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('is_company', '=', True)]</field>
+        <field name="context">{'default_is_company': True, 'default_th_client_status': 'active'}</field>
+    </record>
+</odoo>

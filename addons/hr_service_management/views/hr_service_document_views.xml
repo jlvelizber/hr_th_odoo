@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_service_document_tree" model="ir.ui.view">
+        <field name="name">hr.service.document.tree</field>
+        <field name="model">hr.service.document</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="state == 'missing'" decoration-success="state == 'verified'">
+                <field name="section_id"/>
+                <field name="name"/>
+                <field name="state"/>
+                <field name="file_name"/>
+                <field name="partner_id" optional="hide"/>
+                <field name="employee_id" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_service_document_form" model="ir.ui.view">
+        <field name="name">hr.service.document.form</field>
+        <field name="model">hr.service.document</field>
+        <field name="arch" type="xml">
+            <form string="Documento">
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="missing,uploaded,verified"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="section_id"/>
+                        <field name="name"/>
+                        <field name="partner_id" invisible="employee_id or project_id"/>
+                        <field name="employee_id" invisible="partner_id or project_id"/>
+                        <field name="project_id" invisible="partner_id or employee_id"/>
+                        <field name="service_contract_id"/>
+                    </group>
+                    <group string="Archivo">
+                        <field name="file_name"/>
+                        <field name="file_data" filename="file_name"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_service_document_section_tree" model="ir.ui.view">
+        <field name="name">hr.service.document.section.tree</field>
+        <field name="model">hr.service.document.section</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="scope"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_hr_service_document" model="ir.actions.act_window">
+        <field name="name">Documentos TH</field>
+        <field name="res_model">hr.service.document</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hr_service_document_section" model="ir.actions.act_window">
+        <field name="name">Secciones documentales</field>
+        <field name="res_model">hr.service.document.section</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

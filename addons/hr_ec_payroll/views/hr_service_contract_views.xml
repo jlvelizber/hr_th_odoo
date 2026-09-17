@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_service_contract_form_payroll_periods" model="ir.ui.view">
+        <field name="name">hr.service.contract.form.payroll.periods</field>
+        <field name="model">hr.service.contract</field>
+        <field name="inherit_id" ref="hr_service_management.view_hr_service_contract_form"/>
+        <field name="arch" type="xml">
+            <button name="action_view_payroll_projects" position="after">
+                <button type="object" name="action_view_payroll_periods" class="oe_stat_button" icon="fa-calendar" invisible="service_kind != 'payroll'">
+                    <field name="payroll_period_count" widget="statinfo" string="Períodos"/>
+                </button>
+            </button>
+        </field>
+    </record>
+</odoo>

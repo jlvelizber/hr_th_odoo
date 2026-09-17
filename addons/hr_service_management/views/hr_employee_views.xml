@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_employee_form_client_worker" model="ir.ui.view">
+        <field name="name">hr.employee.form.client.worker</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="is_client_worker"/>
+                <field name="client_partner_id" invisible="not is_client_worker" required="is_client_worker"/>
+            </field>
+            <notebook position="inside">
+                <page string="Expediente" invisible="not is_client_worker">
+                    <button name="action_th_init_documents" type="object" string="Inicializar expediente documental" class="btn-primary"/>
+                    <field name="th_document_ids" nolabel="1" context="{'default_employee_id': id}">
+                        <tree editable="bottom">
+                            <field name="section_id" domain="[('scope', '=', 'employee')]"/>
+                            <field name="name"/>
+                            <field name="state"/>
+                            <field name="file_name"/>
+                            <field name="file_data" filename="file_name"/>
+                        </tree>
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="action_th_client_employees" model="ir.actions.act_window">
+        <field name="name">Colaboradores de clientes</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('is_client_worker', '=', True)]</field>
+        <field name="context">{'default_is_client_worker': True}</field>
+    </record>
+</odoo>

@@ -1,0 +1,15 @@
+---
+description: Convenciones módulos Odoo 17 custom TH
+globs: addons/**/*
+alwaysApply: false
+---
+
+# Addons custom
+
+- Solo cambios en `addons/`; nunca parchear core Odoo.
+- Estructura: `__manifest__.py`, `models/`, `views/`, `security/` (groups, ACL, record rules), `data/`, `demo/`, `wizard/` si aplica.
+- Extender con `_inherit`; modelos nuevos solo para gaps (`hr.service.contract`, `hr.service.document`, `hr.payroll.*`).
+- Depende de CE: contacts, crm, sale, project, hr, hr_recruitment, account, **l10n_ec**, mail, calendar.
+- Vistas Odoo 17: `<chatter/>`; herencias con `xpath`; IDs estándar ej. `hr.view_hr_job_form` (no inventar xmlids).
+- **Windows:** guardar `.py`, `.xml`, `.csv`, `odoo.conf`, **`README.md` del módulo** en **UTF-8** (UTF-16/`README` corrupto impide que Odoo detecte el módulo).
+- Versión manifest: `17.0.x.y.z`. Tras cambios: `-u` o `ODOO_UPDATE_ON_START=1` en dev.

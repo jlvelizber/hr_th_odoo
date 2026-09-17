@@ -1,0 +1,12 @@
+---
+description: Docker, bootstrap y Git Bash en Windows
+globs: docker-compose.yml,docker/**/*,config/**/*,.env*
+alwaysApply: false
+---
+
+# Docker dev
+
+- `docker compose up -d` ejecuta bootstrap: `-i` de `ODOO_INIT_MODULES` si falta `hr_service_management` en `POSTGRES_DB`.
+- `POSTGRES_PASSWORD` en `.env` debe coincidir con `db_password` en `config/odoo.conf`.
+- **Git Bash:** prefijar `MSYS_NO_PATHCONV=1` en `docker compose exec odoo odoo -c /etc/odoo/odoo.conf ...` (evita `/etc` → `Program Files/Git/etc`).
+- Primera install: `-i`. Updates: `-u`. Scripts: `scripts/odoo-install-modules.sh`, `scripts/odoo-update-modules.sh`.

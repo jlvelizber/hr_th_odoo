@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_ec_payroll_period_tree" model="ir.ui.view">
+        <field name="name">hr.ec.payroll.period.tree</field>
+        <field name="model">hr.ec.payroll.period</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="input_count"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_ec_payroll_period_kanban" model="ir.ui.view">
+        <field name="name">hr.ec.payroll.period.kanban</field>
+        <field name="model">hr.ec.payroll.period</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column">
+                <field name="partner_id"/>
+                <field name="date_start"/>
+                <field name="state"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div><field name="partner_id"/></div>
+                            <div class="text-muted"><field name="date_start"/></div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_hr_ec_payroll_period_form" model="ir.ui.view">
+        <field name="name">hr.ec.payroll.period.form</field>
+        <field name="model">hr.ec.payroll.period</field>
+        <field name="arch" type="xml">
+            <form string="Período de nómina">
+                <header>
+                    <button name="action_set_collecting" string="Recopilación" type="object" invisible="state != 'pending'"/>
+                    <button name="action_set_processing" string="Procesar" type="object" invisible="state not in ('collecting', 'pending')"/>
+                    <button name="action_set_review" string="Revisión" type="object" invisible="state != 'processing'"/>
+                    <button name="action_set_approved" string="Aprobar" type="object" invisible="state != 'review'"/>
+                    <button name="action_set_delivered" string="Entregada" type="object" invisible="state != 'approved'"/>
+                    <button name="action_set_closed" string="Cerrar" type="object" invisible="state not in ('delivered', 'approved')" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="pending,collecting,processing,review,approved,delivered,closed"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="action_open_inputs" class="oe_stat_button" icon="fa-list">
+                            <field name="input_count" widget="statinfo" string="Novedades"/>
+                        </button>
+                        <button type="object" name="action_open_project" class="oe_stat_button" icon="fa-tasks" invisible="not project_id">
+                            <span class="o_stat_text">Checklist</span>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="partner_id"/>
+                            <field name="service_contract_id"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="user_id"/>
+                            <field name="project_id" readonly="1"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Novedades">
+                            <field name="input_ids" context="{'default_period_id': id, 'default_partner_id': partner_id}">
+                                <tree editable="bottom">
+                                    <field name="partner_id" column_invisible="True"/>
+                                    <field name="employee_id"/>
+                                    <field name="input_type_id"/>
+                                    <field name="name"/>
+                                    <field name="quantity"/>
+                                    <field name="amount"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Observaciones">
+                            <field name="notes"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_ec_payroll_period_search" model="ir.ui.view">
+        <field name="name">hr.ec.payroll.period.search</field>
+        <field name="model">hr.ec.payroll.period</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="user_id"/>
+                <filter string="Abiertos" name="open" domain="[('state', '!=', 'closed')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Cliente" name="group_partner" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Estado" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_hr_ec_payroll_period" model="ir.actions.act_window">
+        <field name="name">Períodos de nómina</field>
+        <field name="res_model">hr.ec.payroll.period</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="context">{'search_default_open': 1}</field>
+    </record>
+</odoo>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_contact_empresa_xyz" model="res.partner">
+        <field name="name">María Contacto Demo</field>
+        <field name="parent_id" ref="demo_partner_empresa_xyz"/>
+        <field name="type">contact</field>
+        <field name="function">Gerente Administrativa</field>
+        <field name="email">maria.contacto@empresaxyz.demo</field>
+        <field name="phone">+593 99 111 2222</field>
+    </record>
+
+    <record id="demo_sale_payroll" model="sale.order">
+        <field name="partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="service_contract_id" ref="demo_contract_payroll"/>
+    </record>
+    <record id="demo_sale_line_payroll" model="sale.order.line">
+        <field name="order_id" ref="demo_sale_payroll"/>
+        <field name="product_id" ref="demo_product_payroll"/>
+        <field name="product_uom_qty">1</field>
+        <field name="price_unit">200</field>
+    </record>
+
+    <function model="hr.service.contract" name="write">
+        <value eval="[ref('demo_contract_payroll')]"/>
+        <value eval="{'sale_order_id': ref('demo_sale_payroll')}"/>
+    </function>
+
+    <record id="demo_payroll_project_sep2026" model="project.project">
+        <field name="name">Nómina — Empresa XYZ S.A. — Septiembre 2026</field>
+        <field name="partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="service_contract_id" ref="demo_contract_payroll"/>
+        <field name="th_is_payroll_run" eval="True"/>
+        <field name="th_payroll_period">2026-09-01</field>
+        <field name="th_payroll_state">processing</field>
+    </record>
+
+    <record id="demo_payroll_task_1" model="project.task">
+        <field name="name">Solicitar novedades</field>
+        <field name="project_id" ref="demo_payroll_project_sep2026"/>
+        <field name="state">1_done</field>
+    </record>
+    <record id="demo_payroll_task_2" model="project.task">
+        <field name="name">Recibir novedades</field>
+        <field name="project_id" ref="demo_payroll_project_sep2026"/>
+        <field name="state">1_done</field>
+    </record>
+    <record id="demo_payroll_task_3" model="project.task">
+        <field name="name">Validar información</field>
+        <field name="project_id" ref="demo_payroll_project_sep2026"/>
+    </record>
+    <record id="demo_payroll_task_4" model="project.task">
+        <field name="name">Procesar nómina</field>
+        <field name="project_id" ref="demo_payroll_project_sep2026"/>
+    </record>
+    <record id="demo_payroll_task_5" model="project.task">
+        <field name="name">Revisar</field>
+        <field name="project_id" ref="demo_payroll_project_sep2026"/>
+    </record>
+    <record id="demo_payroll_task_6" model="project.task">
+        <field name="name">Generar roles</field>
+        <field name="project_id" ref="demo_payroll_project_sep2026"/>
+    </record>
+    <record id="demo_payroll_task_7" model="project.task">
+        <field name="name">Entregar al cliente</field>
+        <field name="project_id" ref="demo_payroll_project_sep2026"/>
+    </record>
+    <record id="demo_payroll_task_8" model="project.task">
+        <field name="name">Cerrar período</field>
+        <field name="project_id" ref="demo_payroll_project_sep2026"/>
+    </record>
+
+    <record id="demo_employee_1" model="hr.employee">
+        <field name="name">Colaborador Demo 01</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Asistente administrativo</field>
+    </record>
+    <record id="demo_employee_2" model="hr.employee">
+        <field name="name">Colaborador Demo 02</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Recepcionista</field>
+    </record>
+    <record id="demo_employee_3" model="hr.employee">
+        <field name="name">Colaborador Demo 03</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Contador</field>
+    </record>
+    <record id="demo_employee_4" model="hr.employee">
+        <field name="name">Colaborador Demo 04</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Vendedor</field>
+    </record>
+    <record id="demo_employee_5" model="hr.employee">
+        <field name="name">Colaborador Demo 05</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Operario</field>
+    </record>
+    <record id="demo_employee_6" model="hr.employee">
+        <field name="name">Colaborador Demo 06</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Supervisor</field>
+    </record>
+    <record id="demo_employee_7" model="hr.employee">
+        <field name="name">Colaborador Demo 07</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Analista TH</field>
+    </record>
+    <record id="demo_employee_8" model="hr.employee">
+        <field name="name">Colaborador Demo 08</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Técnico</field>
+    </record>
+    <record id="demo_employee_9" model="hr.employee">
+        <field name="name">Colaborador Demo 09</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Auxiliar</field>
+    </record>
+    <record id="demo_employee_10" model="hr.employee">
+        <field name="name">Colaborador Demo 10</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="is_client_worker" eval="True"/>
+        <field name="client_partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="job_title">Conductor</field>
+    </record>
+</odoo>

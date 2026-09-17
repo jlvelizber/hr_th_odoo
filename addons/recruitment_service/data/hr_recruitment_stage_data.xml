@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="stage_th_applicant" model="hr.recruitment.stage">
+        <field name="name">Postulante</field>
+        <field name="sequence">1</field>
+    </record>
+    <record id="stage_th_cv_review" model="hr.recruitment.stage">
+        <field name="name">Revisión de CV</field>
+        <field name="sequence">2</field>
+    </record>
+    <record id="stage_th_prescreen" model="hr.recruitment.stage">
+        <field name="name">Preseleccionado</field>
+        <field name="sequence">3</field>
+    </record>
+    <record id="stage_th_hr_interview" model="hr.recruitment.stage">
+        <field name="name">Entrevista RRHH</field>
+        <field name="sequence">4</field>
+    </record>
+    <record id="stage_th_evaluation" model="hr.recruitment.stage">
+        <field name="name">Evaluación</field>
+        <field name="sequence">5</field>
+    </record>
+    <record id="stage_th_client_interview" model="hr.recruitment.stage">
+        <field name="name">Entrevista cliente</field>
+        <field name="sequence">6</field>
+    </record>
+    <record id="stage_th_finalist" model="hr.recruitment.stage">
+        <field name="name">Finalista</field>
+        <field name="sequence">7</field>
+    </record>
+    <record id="stage_th_selected" model="hr.recruitment.stage">
+        <field name="name">Seleccionado</field>
+        <field name="sequence">8</field>
+    </record>
+    <record id="stage_th_hired" model="hr.recruitment.stage">
+        <field name="name">Contratado</field>
+        <field name="sequence">9</field>
+        <field name="hired_stage" eval="True"/>
+        <field name="fold" eval="True"/>
+    </record>
+    <record id="stage_th_refused" model="hr.recruitment.stage">
+        <field name="name">Descartado</field>
+        <field name="sequence">10</field>
+        <field name="fold" eval="True"/>
+    </record>
+</odoo>

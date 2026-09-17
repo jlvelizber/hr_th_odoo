@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hr_th_recruitment" name="Reclutamiento" parent="hr_service_management.menu_hr_th_root" sequence="20"/>
+
+    <menuitem id="menu_hr_th_recruitment_jobs" name="Vacantes" parent="menu_hr_th_recruitment" action="action_th_recruitment_jobs" sequence="10"/>
+    <menuitem id="menu_hr_th_recruitment_applicants" name="Candidatos" parent="menu_hr_th_recruitment" action="action_th_applicants" sequence="20"/>
+    <menuitem id="menu_hr_th_recruitment_profiles" name="Perfiles plantilla" parent="menu_hr_th_recruitment" action="action_hr_job_profile_template" sequence="30" groups="hr_service_management.group_hr_th_manager"/>
+</odoo>

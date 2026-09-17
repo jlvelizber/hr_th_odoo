@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_job_form_th_client" model="ir.ui.view">
+        <field name="name">hr.job.form.th.client</field>
+        <field name="model">hr.job</field>
+        <field name="inherit_id" ref="hr.view_hr_job_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button type="object" name="action_create_selection_project" class="oe_stat_button" icon="fa-plus-square" invisible="th_project_id">
+                    <span class="o_stat_text">Crear proyecto</span>
+                </button>
+                <button type="object" name="action_open_selection_project" class="oe_stat_button" icon="fa-tasks" invisible="not th_project_id">
+                    <span class="o_stat_text">Proyecto selección</span>
+                </button>
+            </div>
+            <field name="department_id" position="after">
+                <field name="client_partner_id"/>
+                <field name="service_contract_id"/>
+                <field name="profile_template_id"/>
+                <field name="th_project_id" readonly="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_hr_job_tree_th_client" model="ir.ui.view">
+        <field name="name">hr.job.tree.th.client</field>
+        <field name="model">hr.job</field>
+        <field name="inherit_id" ref="hr.view_hr_job_tree"/>
+        <field name="arch" type="xml">
+            <field name="no_of_recruitment" position="after">
+                <field name="client_partner_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="action_th_recruitment_jobs" model="ir.actions.act_window">
+        <field name="name">Vacantes de clientes</field>
+        <field name="res_model">hr.job</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[('client_partner_id', '!=', False)]</field>
+        <field name="context">{'default_no_of_recruitment': 1}</field>
+    </record>
+</odoo>

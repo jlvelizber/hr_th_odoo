@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hr_ec_payroll_root" name="Nómina" parent="hr_service_management.menu_hr_th_root" sequence="35" groups="hr_service_management.group_hr_th_payroll,hr_service_management.group_hr_th_manager"/>
+
+    <menuitem id="menu_hr_ec_payroll_periods" name="Períodos" parent="menu_hr_ec_payroll_root" action="action_hr_ec_payroll_period" sequence="10"/>
+    <menuitem id="menu_hr_ec_payroll_inputs" name="Novedades" parent="menu_hr_ec_payroll_root" action="action_hr_ec_payroll_input" sequence="20"/>
+
+    <menuitem id="menu_hr_ec_payroll_config" name="Configuración nómina" parent="hr_service_management.menu_hr_th_config" sequence="30" groups="hr_service_management.group_hr_th_manager"/>
+    <menuitem id="menu_hr_ec_payroll_input_types" name="Tipos de novedad" parent="menu_hr_ec_payroll_config" action="action_hr_ec_payroll_input_type" sequence="10"/>
+</odoo>

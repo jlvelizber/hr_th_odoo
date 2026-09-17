@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_project_form_service_contract" model="ir.ui.view">
+        <field name="name">project.project.form.service.contract</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="service_contract_id"/>
+                <field name="th_is_payroll_run" invisible="1"/>
+                <field name="th_payroll_period" invisible="not th_is_payroll_run"/>
+                <field name="th_payroll_state" invisible="not th_is_payroll_run"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="action_th_payroll_projects" model="ir.actions.act_window">
+        <field name="name">Nóminas en proceso</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('th_is_payroll_run', '=', True), ('th_payroll_state', 'not in', ('closed',))]</field>
+        <field name="context">{'group_by': 'th_payroll_state'}</field>
+    </record>
+
+    <record id="action_th_projects" model="ir.actions.act_window">
+        <field name="name">Proyectos TH</field>
+        <field name="res_model">project.project</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="domain">[('service_contract_id', '!=', False)]</field>
+    </record>
+
+    <record id="action_th_service_tasks" model="ir.actions.act_window">
+        <field name="name">Tareas de servicios</field>
+        <field name="res_model">project.task</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('service_contract_id', '!=', False)]</field>
+    </record>
+</odoo>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_partner_empresa_xyz" model="res.partner">
+        <field name="name">Empresa XYZ S.A.</field>
+        <field name="is_company" eval="True"/>
+        <field name="vat">1791234567001</field>
+        <field name="th_client_status">active</field>
+        <field name="th_commercial_name">Empresa XYZ</field>
+        <field name="th_approx_headcount">10</field>
+        <field name="email">contacto@empresaxyz.demo</field>
+        <field name="phone">+593 99 000 0000</field>
+    </record>
+
+    <record id="demo_product_payroll" model="product.product">
+        <field name="name">Administración de nómina mensual</field>
+        <field name="type">service</field>
+        <field name="list_price">200.0</field>
+        <field name="default_code">PAYROLL</field>
+    </record>
+
+    <record id="demo_product_recruitment" model="product.product">
+        <field name="name">Proceso de selección</field>
+        <field name="type">service</field>
+        <field name="list_price">150.0</field>
+        <field name="default_code">RECRUIT</field>
+    </record>
+
+    <record id="demo_contract_payroll" model="hr.service.contract">
+        <field name="partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="product_id" ref="demo_product_payroll"/>
+        <field name="service_kind">payroll</field>
+        <field name="service_mode">recurrent</field>
+        <field name="periodicity">monthly</field>
+        <field name="price_unit">200</field>
+        <field name="state">active</field>
+    </record>
+
+    <record id="demo_contract_recruitment" model="hr.service.contract">
+        <field name="partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="product_id" ref="demo_product_recruitment"/>
+        <field name="service_kind">recruitment</field>
+        <field name="service_mode">one_shot</field>
+        <field name="periodicity">once</field>
+        <field name="price_unit">150</field>
+        <field name="state">active</field>
+    </record>
+
+    <record id="demo_doc_client_contracts" model="hr.service.document">
+        <field name="partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="section_id" ref="doc_section_client_contracts"/>
+        <field name="name">Contrato marco de servicios TH</field>
+        <field name="state">uploaded</field>
+    </record>
+    <record id="demo_doc_client_payroll" model="hr.service.document">
+        <field name="partner_id" ref="demo_partner_empresa_xyz"/>
+        <field name="section_id" ref="doc_section_client_payroll"/>
+        <field name="name">Formato de novedades mensuales</field>
+        <field name="state">missing</field>
+    </record>
+</odoo>

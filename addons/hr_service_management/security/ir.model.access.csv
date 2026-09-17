@@ -1,0 +1,12 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_service_contract_user,hr.service.contract user,model_hr_service_contract,group_hr_th_user,1,1,1,0
+access_hr_service_contract_manager,hr.service.contract manager,model_hr_service_contract,group_hr_th_manager,1,1,1,1
+access_hr_service_task_template_user,hr.service.task.template user,model_hr_service_task_template,group_hr_th_user,1,0,0,0
+access_hr_service_task_template_manager,hr.service.task.template manager,model_hr_service_task_template,group_hr_th_manager,1,1,1,1
+access_hr_service_document_user,hr.service.document user,model_hr_service_document,group_hr_th_user,1,1,1,0
+access_hr_service_document_manager,hr.service.document manager,model_hr_service_document,group_hr_th_manager,1,1,1,1
+access_hr_service_document_section_user,hr.service.document.section user,model_hr_service_document_section,group_hr_th_user,1,0,0,0
+access_hr_service_document_section_manager,hr.service.document.section manager,model_hr_service_document_section,group_hr_th_manager,1,1,1,1
+access_hr_th_summary_user,hr.th.summary user,model_hr_th_summary,group_hr_th_user,1,1,1,1
+access_hr_service_payroll_period_wizard_user,hr.service.payroll.period.wizard user,model_hr_service_payroll_period_wizard,group_hr_th_user,1,1,1,1
+access_hr_service_payroll_period_wizard_payroll,hr.service.payroll.period.wizard payroll,model_hr_service_payroll_period_wizard,group_hr_th_payroll,1,1,1,1

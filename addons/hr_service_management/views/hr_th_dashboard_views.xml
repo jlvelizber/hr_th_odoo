@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_th_summary_form" model="ir.ui.view">
+        <field name="name">hr.th.summary.form</field>
+        <field name="model">hr.th.summary</field>
+        <field name="arch" type="xml">
+            <form string="Panel TH" create="false" delete="false">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Resumen operativo</h1>
+                    </div>
+                    <group string="Filtros">
+                        <field name="filter_partner_id"/>
+                        <field name="filter_user_id"/>
+                        <button name="action_refresh_summary" type="object" string="Actualizar" class="btn-secondary"/>
+                    </group>
+                    <group>
+                        <group string="Clientes y servicios">
+                            <label for="active_client_count"/>
+                            <div class="o_row">
+                                <field name="active_client_count" class="oe_inline"/>
+                                <button name="action_open_active_clients" type="object" string="Ver" class="btn-link"/>
+                            </div>
+                            <label for="active_service_count"/>
+                            <div class="o_row">
+                                <field name="active_service_count" class="oe_inline"/>
+                                <button name="action_open_active_services" type="object" string="Ver" class="btn-link"/>
+                            </div>
+                        </group>
+                        <group string="Reclutamiento">
+                            <label for="open_job_count"/>
+                            <div class="o_row">
+                                <field name="open_job_count" class="oe_inline"/>
+                                <button name="action_open_open_jobs" type="object" string="Ver" class="btn-link"/>
+                            </div>
+                            <label for="applicant_count"/>
+                            <div class="o_row">
+                                <field name="applicant_count" class="oe_inline"/>
+                                <button name="action_open_applicants" type="object" string="Ver" class="btn-link"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Operación">
+                            <label for="open_task_count"/>
+                            <div class="o_row">
+                                <field name="open_task_count" class="oe_inline"/>
+                                <button name="action_open_open_tasks" type="object" string="Ver" class="btn-link"/>
+                            </div>
+                            <label for="overdue_task_count"/>
+                            <div class="o_row">
+                                <field name="overdue_task_count" class="oe_inline"/>
+                                <button name="action_open_overdue_tasks" type="object" string="Ver" class="btn-link"/>
+                            </div>
+                            <label for="payroll_project_count"/>
+                            <div class="o_row">
+                                <field name="payroll_project_count" class="oe_inline"/>
+                                <button name="action_open_payroll_projects" type="object" string="Ver" class="btn-link"/>
+                            </div>
+                        </group>
+                        <group string="Documentos y facturación">
+                            <label for="missing_document_count"/>
+                            <div class="o_row">
+                                <field name="missing_document_count" class="oe_inline"/>
+                                <button name="action_open_missing_documents" type="object" string="Ver" class="btn-link"/>
+                            </div>
+                            <label for="draft_invoice_count"/>
+                            <div class="o_row">
+                                <field name="draft_invoice_count" class="oe_inline"/>
+                                <button name="action_open_draft_invoices" type="object" string="Ver" class="btn-link"/>
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_th_summary" model="ir.actions.act_window">
+        <field name="name">Resumen</field>
+        <field name="res_model">hr.th.summary</field>
+        <field name="view_mode">form</field>
+        <field name="target">current</field>
+    </record>
+
+    <record id="action_hr_th_summary_server" model="ir.actions.server">
+        <field name="name">Abrir panel TH</field>
+        <field name="model_id" ref="model_hr_th_summary"/>
+        <field name="state">code</field>
+        <field name="code"><![CDATA[
+summary = env['hr.th.summary'].create({})
+action = env.ref('hr_service_management.action_hr_th_summary').read()[0]
+action['res_id'] = summary.id
+action
+]]></field>
+    </record>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_hr_th_root" name="Talento Humano" sequence="45" groups="hr_service_management.group_hr_th_user"/>
+
+    <menuitem id="menu_hr_th_dashboard" name="Panel" parent="menu_hr_th_root" sequence="1"/>
+    <menuitem id="menu_hr_th_summary" name="Resumen" parent="menu_hr_th_dashboard" action="action_hr_th_summary_server" sequence="5"/>
+    <menuitem id="menu_hr_th_clients" name="Clientes" parent="menu_hr_th_dashboard" action="action_th_clients" sequence="10"/>
+    <menuitem id="menu_hr_th_contracts" name="Servicios activos" parent="menu_hr_th_dashboard" action="action_hr_service_contract" sequence="20"/>
+    <menuitem id="menu_hr_th_projects" name="Proyectos" parent="menu_hr_th_dashboard" action="action_th_projects" sequence="30"/>
+    <menuitem id="menu_hr_th_service_tasks" name="Tareas de servicios" parent="menu_hr_th_dashboard" action="action_th_service_tasks" sequence="40"/>
+    <menuitem id="menu_hr_th_payroll_projects" name="Nóminas en proceso" parent="menu_hr_th_dashboard" action="action_th_payroll_projects" sequence="45"/>
+    <menuitem id="menu_hr_th_client_employees" name="Colaboradores clientes" parent="menu_hr_th_dashboard" action="action_th_client_employees" sequence="50"/>
+
+    <menuitem id="menu_hr_th_documents" name="Documentos" parent="menu_hr_th_dashboard" action="action_hr_service_document" sequence="55"/>
+
+    <menuitem id="menu_hr_th_config" name="Configuración" parent="menu_hr_th_root" sequence="90" groups="hr_service_management.group_hr_th_manager"/>
+    <menuitem id="menu_hr_th_document_sections" name="Secciones documentales" parent="menu_hr_th_config" action="action_hr_service_document_section" sequence="20"/>
+</odoo>
