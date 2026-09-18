@@ -2,9 +2,8 @@ from odoo import models
 
 
 class HrServiceDocument(models.Model):
-    _inherit = ["hr.service.document", "portal.mixin"]
+    _inherit = "hr.service.document"
 
-    def _compute_access_url(self):
-        super()._compute_access_url()
-        for doc in self:
-            doc.access_url = "/my/th/documents/%s" % doc.id
+    def get_portal_url(self, **kwargs):
+        self.ensure_one()
+        return "/my/th/documents/%s" % self.id

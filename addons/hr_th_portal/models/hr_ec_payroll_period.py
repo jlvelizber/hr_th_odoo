@@ -2,9 +2,8 @@ from odoo import models
 
 
 class HrEcPayrollPeriod(models.Model):
-    _inherit = ["hr.ec.payroll.period", "portal.mixin"]
+    _inherit = "hr.ec.payroll.period"
 
-    def _compute_access_url(self):
-        super()._compute_access_url()
-        for period in self:
-            period.access_url = "/my/th/payroll/%s" % period.id
+    def get_portal_url(self, **kwargs):
+        self.ensure_one()
+        return "/my/th/payroll/%s" % self.id

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="portal_my_home_th" name="Portal TH" inherit_id="portal.portal_my_home" priority="35">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="before">
+            <t t-set="portal_client_category_enable" t-value="True"/>
+        </xpath>
+        <div id="portal_client_category" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Servicios TH</t>
+                <t t-set="text">Contratos, expediente, nómina y vacantes de su empresa</t>
+                <t t-set="url" t-value="'/my/th/contracts'"/>
+                <t t-set="placeholder_count" t-value="'th_contract_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Expediente documental</t>
+                <t t-set="text">Consulte y cargue documentos pendientes</t>
+                <t t-set="url" t-value="'/my/th/documents'"/>
+                <t t-set="placeholder_count" t-value="'th_document_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Nómina</t>
+                <t t-set="text">Estado de los períodos de nómina (sin detalle de roles)</t>
+                <t t-set="url" t-value="'/my/th/payroll'"/>
+                <t t-set="placeholder_count" t-value="'th_payroll_period_count'"/>
+            </t>
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Vacantes</t>
+                <t t-set="text">Procesos de selección abiertos para su empresa</t>
+                <t t-set="url" t-value="'/my/th/jobs'"/>
+                <t t-set="placeholder_count" t-value="'th_job_count'"/>
+            </t>
+        </div>
+    </template>
+
+    <template id="portal_th_contracts" name="Contratos TH">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Contratos de servicio</t>
+            </t>
+            <div t-if="not contracts" class="alert alert-warning">No hay contratos visibles.</div>
+            <t t-if="contracts" t-call="portal.portal_table">
+                <thead>
+                    <tr>
+                        <th>Referencia</th>
+                        <th>Servicio</th>
+                        <th>Tipo</th>
+                        <th>Estado</th>
+                        <th>Inicio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="contracts" t-as="contract">
+                        <td><a t-att-href="contract.get_portal_url()"><t t-out="contract.name"/></a></td>
+                        <td><t t-out="contract.product_id.name"/></td>
+                        <td><span t-field="contract.service_kind"/></td>
+                        <td><span t-field="contract.state"/></td>
+                        <td><span t-field="contract.date_start"/></td>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_th_contract_detail" name="Contrato TH detalle">
+        <t t-call="portal.portal_layout">
+            <div class="container pt-3">
+                <h2 t-out="contract.name"/>
+                <p><strong>Cliente:</strong> <span t-field="contract.partner_id"/></p>
+                <p><strong>Servicio:</strong> <span t-field="contract.product_id"/></p>
+                <p><strong>Estado:</strong> <span t-field="contract.state"/></p>
+                <p t-if="contract.date_start"><strong>Vigencia:</strong> <span t-field="contract.date_start"/> — <span t-field="contract.date_end"/></p>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_th_documents" name="Documentos TH">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Expediente documental</t>
+            </t>
+            <div t-if="not documents" class="alert alert-info">No hay documentos en su expediente.</div>
+            <t t-if="documents" t-call="portal.portal_table">
+                <thead>
+                    <tr>
+                        <th>Descripcion</th>
+                        <th>Seccion</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="documents" t-as="doc">
+                        <td><a t-att-href="doc.get_portal_url()"><t t-out="doc.name"/></a></td>
+                        <td><t t-out="doc.section_id.name"/></td>
+                        <td><span t-field="doc.state"/></td>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_th_document_detail" name="Documento TH detalle">
+        <t t-call="portal.portal_layout">
+            <div class="container pt-3">
+                <h2 t-out="document.name"/>
+                <p><strong>Seccion:</strong> <span t-field="document.section_id"/></p>
+                <p><strong>Estado:</strong> <span t-field="document.state"/></p>
+                <p t-if="document.file_name"><strong>Archivo:</strong> <t t-out="document.file_name"/></p>
+                <form t-if="document.state in ('missing', 'uploaded')" action="" method="post" enctype="multipart/form-data" class="mt-4">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <label class="form-label">Subir o reemplazar archivo</label>
+                    <input type="file" name="ufile" class="form-control mb-2" required="required"/>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_th_payroll" name="Nomina TH periodos">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Periodos de nomina</t>
+            </t>
+            <div t-if="not periods" class="alert alert-info">No hay periodos de nomina registrados.</div>
+            <t t-if="periods" t-call="portal.portal_table">
+                <thead>
+                    <tr>
+                        <th>Periodo</th>
+                        <th>Desde</th>
+                        <th>Hasta</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="periods" t-as="period">
+                        <td><a t-att-href="period.get_portal_url()"><t t-out="period.name"/></a></td>
+                        <td><span t-field="period.date_start"/></td>
+                        <td><span t-field="period.date_end"/></td>
+                        <td><span t-field="period.state"/></td>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_th_payroll_detail" name="Periodo nomina detalle">
+        <t t-call="portal.portal_layout">
+            <div class="container pt-3">
+                <h2 t-out="period.name"/>
+                <p><strong>Estado:</strong> <span t-field="period.state"/></p>
+                <p><strong>Fechas:</strong> <span t-field="period.date_start"/> — <span t-field="period.date_end"/></p>
+                <p class="text-muted">Los roles de pago y montos solo los gestiona la consultora. Contacte a su responsable TH para entregables.</p>
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_th_jobs" name="Vacantes TH">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Vacantes</t>
+            </t>
+            <div t-if="not jobs" class="alert alert-info">No hay vacantes visibles.</div>
+            <t t-if="jobs" t-call="portal.portal_table">
+                <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Departamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="jobs" t-as="job">
+                        <td><a t-att-href="'/my/th/jobs/%s' % job.id"><t t-out="job.name"/></a></td>
+                        <td><t t-out="job.department_id.name or ''"/></td>
+                    </tr>
+                </tbody>
+            </t>
+        </t>
+    </template>
+
+    <template id="portal_th_job_detail" name="Vacante TH detalle">
+        <t t-call="portal.portal_layout">
+            <div class="container pt-3">
+                <h2 t-out="job.name"/>
+                <p t-if="job.description"><span t-field="job.description"/></p>
+            </div>
+        </t>
+    </template>
+</odoo>

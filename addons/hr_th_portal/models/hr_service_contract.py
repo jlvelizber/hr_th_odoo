@@ -2,9 +2,8 @@ from odoo import models
 
 
 class HrServiceContract(models.Model):
-    _inherit = ["hr.service.contract", "portal.mixin"]
+    _inherit = "hr.service.contract"
 
-    def _compute_access_url(self):
-        super()._compute_access_url()
-        for contract in self:
-            contract.access_url = "/my/th/contracts/%s" % contract.id
+    def get_portal_url(self, **kwargs):
+        self.ensure_one()
+        return "/my/th/contracts/%s" % self.id

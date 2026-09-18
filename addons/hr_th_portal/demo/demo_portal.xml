@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="demo_portal_contact_xyz" model="res.partner">
+        <field name="name">Contacto Portal XYZ</field>
+        <field name="parent_id" ref="hr_service_management.demo_partner_empresa_xyz"/>
+        <field name="email">portal@empresaxyz.demo</field>
+        <field name="type">contact</field>
+    </record>
+
+    <record id="demo_user_portal_xyz" model="res.users">
+        <field name="name">Portal Empresa XYZ</field>
+        <field name="login">portal@empresaxyz.demo</field>
+        <field name="password">portalxyz</field>
+        <field name="partner_id" ref="demo_portal_contact_xyz"/>
+        <field name="groups_id" eval="[(4, ref('base.group_portal'))]"/>
+    </record>
+</odoo>

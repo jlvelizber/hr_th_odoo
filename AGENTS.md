@@ -21,6 +21,7 @@ Plataforma de servicios de Talento Humano (consultora Ecuador) sobre **Odoo 17 C
 - `recruitment_service` — vacantes/candidatos por cliente, plantillas perfil
 - `hr_ec_payroll` — Fase 2: períodos, novedades, roles de pago, PDF, KPIs panel
 - `l10n_ec_th_edi` — Fase 3 base: trazabilidad SRI en facturas (XML/firma real pendiente)
+- `hr_th_portal` — Fase 4: portal multicliente por `partner_id`
 
 ## Reglas Cursor
 
@@ -28,4 +29,4 @@ Ver `.cursor/rules/` (`hr-th-platform.mdc` siempre activa).
 
 ## Fase actual
 
-**Fases 2–3 (MVP):** `hr_ec_payroll` v3 (roles, IESS parametrizado, informe) + `l10n_ec_th_edi` instalado. Siguiente: normativa nómina profunda y FE SRI offline real. **Fase 4:** portal.
+**Fases 2–4 (MVP):** nómina, SRI base y portal cliente (`hr_th_portal`). Siguiente: normativa nómina profunda, FE SRI real, mejoras portal.

@@ -18,7 +18,7 @@ Variables en `.env`: `ODOO_AUTO_BOOTSTRAP`, `ODOO_WITH_DEMO`, `ODOO_INIT_MODULES
 
 Abrir http://localhost:8072 — detalle en **[docs/INSTALL.md](docs/INSTALL.md)**.
 
-Módulos custom: `hr_service_management`, `recruitment_service`, `hr_ec_payroll`, `l10n_ec_th_edi`. Demo: **Empresa XYZ S.A.**
+Módulos custom: `hr_service_management`, `recruitment_service`, `hr_ec_payroll`, `l10n_ec_th_edi`, `hr_th_portal`. Demo: **Empresa XYZ S.A.** Portal demo: `portal@empresaxyz.demo` / `portalxyz`.
 
 ## Comandos útiles
 

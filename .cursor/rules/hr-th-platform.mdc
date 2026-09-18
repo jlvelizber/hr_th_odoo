@@ -9,7 +9,7 @@ alwaysApply: true
 
 **Stack:** Odoo **17 CE**, PostgreSQL 16, Docker (`C:/laragon/www/hr-th-odoo`), puerto **8072**. Una `res.company` (consultora); multicliente lógico por `partner_id` / record rules (portal Fase 4).
 
-**Módulos custom:** `hr_service_management`, `recruitment_service`, `hr_ec_payroll`, `l10n_ec_th_edi` (SRI base). No duplicar Contacts, Project, Recruitment, Accounting.
+**Módulos custom:** `hr_service_management`, `recruitment_service`, `hr_ec_payroll`, `l10n_ec_th_edi`, `hr_th_portal`. No duplicar Contacts, Project, Recruitment, Accounting.
 
 **Decisiones:** `docs/DECISIONS.md`. Roadmap: `docs/roadmap.md`. Instalación/bootstrap: `docs/INSTALL.md`, `docker/entrypoint-bootstrap.sh`.
 
