@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Password demo unificada: demoth — solo entornos de desarrollo -->
+    <record id="demo_user_th_usuario" model="res.users">
+        <field name="name">Ana Usuario TH</field>
+        <field name="login">th.usuario@consultora.demo</field>
+        <field name="password">demoth</field>
+        <field name="email">th.usuario@consultora.demo</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_hr_th_user')])]"/>
+    </record>
+
+    <record id="demo_user_th_responsable" model="res.users">
+        <field name="name">Carlos Responsable TH</field>
+        <field name="login">th.responsable@consultora.demo</field>
+        <field name="password">demoth</field>
+        <field name="email">th.responsable@consultora.demo</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_hr_th_manager')])]"/>
+    </record>
+
+    <record id="demo_user_th_nomina" model="res.users">
+        <field name="name">Lucia Nomina TH</field>
+        <field name="login">th.nomina@consultora.demo</field>
+        <field name="password">demoth</field>
+        <field name="email">th.nomina@consultora.demo</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_hr_th_payroll')])]"/>
+    </record>
+
+    <record id="demo_user_th_comercial" model="res.users">
+        <field name="name">Pedro Comercial TH</field>
+        <field name="login">th.comercial@consultora.demo</field>
+        <field name="password">demoth</field>
+        <field name="email">th.comercial@consultora.demo</field>
+        <field name="groups_id" eval="[(6, 0, [ref('group_hr_th_commercial')])]"/>
+    </record>
+</odoo>

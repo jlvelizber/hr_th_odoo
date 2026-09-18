@@ -14,6 +14,8 @@ Plataforma de servicios de Talento Humano (consultora Ecuador) sobre **Odoo 17 C
 | [docs/INSTALL.md](docs/INSTALL.md) | Docker, bootstrap, troubleshooting |
 | [docs/functional-analysis.md](docs/functional-analysis.md) | Análisis funcional |
 | [docs/technical-analysis.md](docs/technical-analysis.md) | Análisis técnico |
+| [docs/DEMO-USERS.md](docs/DEMO-USERS.md) | Usuarios demo |
+| [docs/manuales/README.md](docs/manuales/README.md) | Manuales por perfil |
 
 ## Módulos custom
 

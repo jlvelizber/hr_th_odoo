@@ -33,6 +33,7 @@
         <field name="periodicity">monthly</field>
         <field name="price_unit">200</field>
         <field name="state">active</field>
+        <field name="user_id" ref="demo_user_th_nomina"/>
     </record>
 
     <record id="demo_contract_recruitment" model="hr.service.contract">
@@ -43,6 +44,7 @@
         <field name="periodicity">once</field>
         <field name="price_unit">150</field>
         <field name="state">active</field>
+        <field name="user_id" ref="demo_user_th_usuario"/>
     </record>
 
     <record id="demo_doc_client_contracts" model="hr.service.document">

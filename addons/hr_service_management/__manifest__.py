@@ -33,6 +33,7 @@
         "wizard/hr_service_payroll_period_wizard_views.xml",
     ],
     "demo": [
+        "demo/demo_users.xml",
         "demo/demo_data.xml",
         "demo/demo_operational.xml",
     ],

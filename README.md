@@ -18,7 +18,7 @@ Variables en `.env`: `ODOO_AUTO_BOOTSTRAP`, `ODOO_WITH_DEMO`, `ODOO_INIT_MODULES
 
 Abrir http://localhost:8072 — detalle en **[docs/INSTALL.md](docs/INSTALL.md)**.
 
-Módulos custom: `hr_service_management`, `recruitment_service`, `hr_ec_payroll`, `l10n_ec_th_edi`, `hr_th_portal`. Demo: **Empresa XYZ S.A.** Portal demo: `portal@empresaxyz.demo` / `portalxyz`.
+Módulos custom: `hr_service_management`, `recruitment_service`, `hr_ec_payroll`, `l10n_ec_th_edi`, `hr_th_portal`. Demo: **Empresa XYZ S.A.** Usuarios por perfil: [docs/DEMO-USERS.md](docs/DEMO-USERS.md). Portal: `portal@empresaxyz.demo` / `portalxyz`.
 
 ## Comandos útiles
 
@@ -61,4 +61,5 @@ Restaurar: crear BD vacía y `pg_restore -U odoo -d hr_th_dev backups/hr_th_dev.
 | [docs/INSTALL.md](docs/INSTALL.md) | Instalación Fase 1 |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Decisiones aprobadas |
 | [docs/roadmap.md](docs/roadmap.md) | Fases del proyecto |
-| [docs/modules.md](docs/modules.md) | Mapa de módulos |
+| [docs/DEMO-USERS.md](docs/DEMO-USERS.md) | Usuarios demo por perfil |
+| [docs/manuales/README.md](docs/manuales/README.md) | Manuales de usuario por perfil |
