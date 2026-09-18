@@ -21,6 +21,7 @@ services:
       ODOO_AUTO_BOOTSTRAP: ${ODOO_AUTO_BOOTSTRAP:-1}
       ODOO_WITH_DEMO: ${ODOO_WITH_DEMO:-1}
       ODOO_UPDATE_ON_START: ${ODOO_UPDATE_ON_START:-0}
+      ODOO_DEFAULT_LANG: ${ODOO_DEFAULT_LANG:-es_EC}
     restart: unless-stopped
 
   db:

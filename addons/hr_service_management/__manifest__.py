@@ -1,6 +1,6 @@
 {
     "name": "Gestión de servicios TH",
-    "version": "17.0.2.0.0",
+    "version": "17.0.2.1.0",
     "category": "Human Resources",
     "summary": "Contratos de servicio, clientes TH y colaboradores de clientes",
     "author": "Consultora TH",
@@ -38,4 +38,5 @@
     ],
     "installable": True,
     "application": True,
+    "post_init_hook": "post_init_hook",
 }

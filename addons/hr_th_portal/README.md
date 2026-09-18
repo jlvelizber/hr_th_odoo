@@ -6,6 +6,6 @@ Portal multicliente (Fase 4): usuarios `base.group_portal` ven solo datos de su 
 - Carga de archivos en documentos pendientes
 - Sin acceso a roles de pago ni montos
 
-Demo: login `portal@empresaxyz.demo` / `portalxyz` (tras instalar con demo).
+Demo: `bash scripts/ensure-portal-demo.sh hr_th_dev` → login `portal@empresaxyz.demo` / `portalxyz`.
 
-Desde el cliente empresa: boton **Portal** → asistente nativo de Odoo para invitar contactos.
+Invitacion: ficha cliente empresa → boton **Portal** → **Grant Access** en el contacto. Ver `docs/PORTAL.md`.

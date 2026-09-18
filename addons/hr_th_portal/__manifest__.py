@@ -8,6 +8,7 @@
     "depends": [
         "portal",
         "website",
+        "website_payment",
         "hr_service_management",
         "hr_ec_payroll",
         "recruitment_service",

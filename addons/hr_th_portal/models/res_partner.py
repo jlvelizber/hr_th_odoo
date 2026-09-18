@@ -22,13 +22,9 @@ class ResPartner(models.Model):
 
     def action_th_grant_portal(self):
         self.ensure_one()
-        wizard = (
-            self.env["portal.wizard"]
-            .with_context(
-                active_model="res.partner",
-                active_ids=self.ids,
-                default_partner_ids=self.ids,
-            )
-            .create({})
-        )
+        if self.is_company:
+            partners = self.child_ids.filtered(lambda p: p.type in ("contact", "other")) | self
+        else:
+            partners = self
+        wizard = self.env["portal.wizard"].create({"partner_ids": [(6, 0, partners.ids)]})
         return wizard._action_open_modal()

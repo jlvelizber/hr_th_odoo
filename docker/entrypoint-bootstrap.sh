@@ -7,6 +7,7 @@ ODOO_INIT_MODULES="${ODOO_INIT_MODULES:-hr_service_management,recruitment_servic
 ODOO_AUTO_BOOTSTRAP="${ODOO_AUTO_BOOTSTRAP:-1}"
 ODOO_WITH_DEMO="${ODOO_WITH_DEMO:-1}"
 ODOO_UPDATE_ON_START="${ODOO_UPDATE_ON_START:-0}"
+ODOO_DEFAULT_LANG="${ODOO_DEFAULT_LANG:-es_EC}"
 ODOO_CONF="${ODOO_CONF:-/etc/odoo/odoo.conf}"
 
 HOST="${HOST:-db}"
@@ -56,8 +57,15 @@ if [[ "${ODOO_AUTO_BOOTSTRAP}" == "1" ]]; then
         fi
         echo "[hr-th-odoo] Instalando módulos (${ODOO_INIT_MODULES}) en BD ${ODOO_DB} (estado previo: ${state})..."
         wait-for-psql.py --db_host "${HOST}" --db_port "${PORT:-5432}" --db_user "${USER}" --db_password "${PASSWORD}" --timeout=60
-        odoo -c "${ODOO_CONF}" -d "${ODOO_DB}" -i "${ODOO_INIT_MODULES}" "${demo_args[@]}" --stop-after-init
+        odoo -c "${ODOO_CONF}" -d "${ODOO_DB}" -i "${ODOO_INIT_MODULES}" "${demo_args[@]}" --load-language="${ODOO_DEFAULT_LANG}" --stop-after-init
         echo "[hr-th-odoo] Instalación inicial completada."
+        echo "[hr-th-odoo] Configurando idioma por defecto (${ODOO_DEFAULT_LANG})..."
+        odoo -c "${ODOO_CONF}" -d "${ODOO_DB}" --load-language="${ODOO_DEFAULT_LANG}" --stop-after-init
+        odoo shell -c "${ODOO_CONF}" -d "${ODOO_DB}" --no-http <<PY
+from odoo.addons.hr_service_management.hooks import ensure_default_lang
+ensure_default_lang(env, "${ODOO_DEFAULT_LANG}")
+env.cr.commit()
+PY
     else
         echo "[hr-th-odoo] Módulos ya instalados en ${ODOO_DB}; omitiendo -i."
     fi

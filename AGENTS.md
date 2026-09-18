@@ -29,4 +29,4 @@ Ver `.cursor/rules/` (`hr-th-platform.mdc` siempre activa).
 
 ## Fase actual
 
-**Fases 2–4 (MVP):** nómina, SRI base y portal cliente (`hr_th_portal`). Siguiente: normativa nómina profunda, FE SRI real, mejoras portal.
+**Fases 2–4 (MVP):** nómina, SRI base y portal cliente (`hr_th_portal`). Idioma por defecto **`es_EC`** (bootstrap + `scripts/ensure-lang-es-ec.sh`). Siguiente: normativa nómina profunda, FE SRI real, mejoras portal.
