@@ -12,13 +12,13 @@ cp .env.example .env
 docker compose up -d
 ```
 
-La primera vez, el contenedor **Odoo instala solo** `hr_service_management` y `recruitment_service` (y dependencias: CRM, Ventas, Proyecto, `l10n_ec`, Reclutamiento, etc.) en la BD `POSTGRES_DB`. Ver logs: `docker compose logs -f odoo`.
+La primera vez, el contenedor instala los módulos en `ODOO_INIT_MODULES` (por defecto: `hr_service_management`, `recruitment_service`, `hr_ec_payroll`, `l10n_ec_th_edi`) y dependencias (`l10n_ec`, Proyecto, Reclutamiento, etc.) en `POSTGRES_DB`. Ver logs: `docker compose logs -f odoo`.
 
 Variables en `.env`: `ODOO_AUTO_BOOTSTRAP`, `ODOO_WITH_DEMO`, `ODOO_INIT_MODULES`, `ODOO_UPDATE_ON_START` (actualizar en cada arranque, solo dev).
 
 Abrir http://localhost:8072 — detalle en **[docs/INSTALL.md](docs/INSTALL.md)**.
 
-Módulos custom: `hr_service_management`, `recruitment_service`. Demo: **Empresa XYZ S.A.**
+Módulos custom: `hr_service_management`, `recruitment_service`, `hr_ec_payroll`, `l10n_ec_th_edi`. Demo: **Empresa XYZ S.A.**
 
 ## Comandos útiles
 

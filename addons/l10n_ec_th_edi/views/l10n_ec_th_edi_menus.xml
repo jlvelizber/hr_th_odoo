@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_sri_ec_root" name="SRI Ecuador" parent="account.menu_finance" sequence="95" groups="account.group_account_invoice"/>
+    <menuitem id="menu_sri_ec_documents" name="Comprobantes electronicos" parent="menu_sri_ec_root" action="action_sri_ec_document" sequence="10"/>
+</odoo>

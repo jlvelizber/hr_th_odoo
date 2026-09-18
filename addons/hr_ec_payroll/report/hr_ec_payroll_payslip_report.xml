@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_hr_ec_payroll_payslip" model="ir.actions.report">
+        <field name="name">Rol de pago</field>
+        <field name="model">hr.ec.payroll.payslip</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">hr_ec_payroll.report_payslip_document</field>
+        <field name="report_file">hr_ec_payroll.report_payslip_document</field>
+        <field name="print_report_name">'Rol-%s' % (object.employee_id.name)</field>
+    </record>
+
+    <template id="report_payslip">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="hr_ec_payroll.report_payslip_document"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_payslip_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>Rol de pago (borrador)</h2>
+                <p>
+                    <strong>Cliente:</strong> <span t-field="doc.partner_id"/>
+                    <br/>
+                    <strong>Período:</strong> <span t-field="doc.period_id"/>
+                    <br/>
+                    <strong>Colaborador:</strong> <span t-field="doc.employee_id"/>
+                </p>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th class="text-end">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Salario base</td>
+                            <td class="text-end"><span t-field="doc.wage_base"/></td>
+                        </tr>
+                        <tr t-foreach="doc.line_ids" t-as="line">
+                            <td><span t-field="line.name"/></td>
+                            <td class="text-end"><span t-field="line.amount"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="mt-3">
+                    <strong>Total ingresos:</strong> <span t-field="doc.total_earnings"/>
+                    <br/>
+                    <strong>Total descuentos:</strong> <span t-field="doc.total_deductions"/>
+                    <br/>
+                    <strong>Líquido a recibir:</strong> <span t-field="doc.net_pay"/>
+                </p>
+                <p class="text-muted small">
+                    Documento informativo generado por la plataforma TH. Validar con normativa vigente y asesoría laboral.
+                </p>
+            </div>
+        </t>
+    </template>
+</odoo>

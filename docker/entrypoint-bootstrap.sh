@@ -3,7 +3,7 @@
 set -euo pipefail
 
 ODOO_DB="${ODOO_DB:-hr_th_dev}"
-ODOO_INIT_MODULES="${ODOO_INIT_MODULES:-hr_service_management,recruitment_service}"
+ODOO_INIT_MODULES="${ODOO_INIT_MODULES:-hr_service_management,recruitment_service,hr_ec_payroll,l10n_ec_th_edi}"
 ODOO_AUTO_BOOTSTRAP="${ODOO_AUTO_BOOTSTRAP:-1}"
 ODOO_WITH_DEMO="${ODOO_WITH_DEMO:-1}"
 ODOO_UPDATE_ON_START="${ODOO_UPDATE_ON_START:-0}"

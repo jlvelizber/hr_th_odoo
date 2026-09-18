@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sri_ec_document_invoice,sri.ec.document invoice,model_sri_ec_document,account.group_account_invoice,1,1,1,0
+access_sri_ec_document_manager,sri.ec.document manager,model_sri_ec_document,account.group_account_manager,1,1,1,1

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="seq_sri_ec_document" model="ir.sequence">
+        <field name="name">Comprobante SRI TH</field>
+        <field name="code">sri.ec.document</field>
+        <field name="prefix">SRI/</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

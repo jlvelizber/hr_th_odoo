@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_th_summary_form_payroll" model="ir.ui.view">
+        <field name="name">hr.th.summary.form.payroll</field>
+        <field name="model">hr.th.summary</field>
+        <field name="inherit_id" ref="hr_service_management.view_hr_th_summary_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payroll_project_count']/parent::div" position="after">
+                <label for="open_payroll_period_count"/>
+                <div class="o_row">
+                    <field name="open_payroll_period_count" class="oe_inline"/>
+                    <button name="action_open_ec_payroll_periods" type="object" string="Ver" class="btn-link"/>
+                </div>
+                <label for="payslip_draft_count"/>
+                <div class="o_row">
+                    <field name="payslip_draft_count" class="oe_inline"/>
+                    <button name="action_open_payslips" type="object" string="Ver" class="btn-link"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

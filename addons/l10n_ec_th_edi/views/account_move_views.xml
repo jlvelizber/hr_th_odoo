@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_sri_th" model="ir.ui.view">
+        <field name="name">account.move.form.sri.th</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button type="object" name="action_view_sri_documents" class="oe_stat_button" icon="fa-file-text-o" invisible="move_type not in ('out_invoice', 'out_refund')">
+                    <field name="sri_ec_document_count" widget="statinfo" string="SRI"/>
+                </button>
+            </div>
+            <header position="inside">
+                <button name="action_create_sri_document" string="Crear comprobante SRI" type="object" invisible="move_type not in ('out_invoice', 'out_refund') or state != 'posted'"/>
+            </header>
+        </field>
+    </record>
+</odoo>

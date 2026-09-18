@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_partner_form_portal_th" model="ir.ui.view">
+        <field name="name">res.partner.form.portal.th</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="hr_service_management.view_partner_form_th_services"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button type="object" name="action_th_grant_portal" class="oe_stat_button" icon="fa-user-secret" invisible="not is_company" groups="base.group_partner_manager">
+                    <field name="th_portal_access_count" widget="statinfo" string="Portal"/>
+                </button>
+            </div>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_service_contract_portal,hr.service.contract portal,hr_service_management.model_hr_service_contract,base.group_portal,1,0,0,0
+access_hr_service_document_portal,hr.service.document portal,hr_service_management.model_hr_service_document,base.group_portal,1,1,0,0
+access_hr_ec_payroll_period_portal,hr.ec.payroll.period portal,hr_ec_payroll.model_hr_ec_payroll_period,base.group_portal,1,0,0,0
+access_project_project_portal_th,project.project portal th,project.model_project_project,base.group_portal,1,0,0,0
+access_hr_job_portal_th,hr.job portal th,hr.model_hr_job,base.group_portal,1,0,0,0
+access_hr_service_document_section_portal,hr.service.document.section portal,hr_service_management.model_hr_service_document_section,base.group_portal,1,0,0,0

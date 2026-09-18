@@ -52,12 +52,19 @@ class HrEcPayrollPeriod(models.Model):
     )
     input_ids = fields.One2many("hr.ec.payroll.input", "period_id", string="Novedades")
     input_count = fields.Integer(compute="_compute_input_count")
+    payslip_ids = fields.One2many("hr.ec.payroll.payslip", "period_id", string="Roles")
+    payslip_count = fields.Integer(compute="_compute_payslip_count")
     notes = fields.Html(string="Observaciones")
 
     @api.depends("input_ids")
     def _compute_input_count(self):
         for period in self:
             period.input_count = len(period.input_ids)
+
+    @api.depends("payslip_ids")
+    def _compute_payslip_count(self):
+        for period in self:
+            period.payslip_count = len(period.payslip_ids)
 
     @api.model_create_multi
     def create(self, vals_list):
@@ -126,3 +133,99 @@ class HrEcPayrollPeriod(models.Model):
             "view_mode": "form",
             "res_id": self.project_id.id,
         }
+
+    def action_open_payslips(self):
+        self.ensure_one()
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Roles de pago"),
+            "res_model": "hr.ec.payroll.payslip",
+            "view_mode": "tree,form",
+            "domain": [("period_id", "=", self.id)],
+            "context": {"default_period_id": self.id},
+        }
+
+    def action_compute_payslips(self):
+        Payslip = self.env["hr.ec.payroll.payslip"]
+        Line = self.env["hr.ec.payroll.payslip.line"]
+        for period in self:
+            if period.state == "closed":
+                raise UserError(_("No se puede recalcular un período cerrado."))
+            employees = self.env["hr.employee"].search(
+                [
+                    ("is_client_worker", "=", True),
+                    ("client_partner_id", "=", period.partner_id.id),
+                ]
+            )
+            company = period.company_id
+            iess_rate = company.th_ec_iess_employee_rate or 0.0
+            for employee in employees:
+                slip = Payslip.search(
+                    [("period_id", "=", period.id), ("employee_id", "=", employee.id)],
+                    limit=1,
+                )
+                if not slip:
+                    slip = Payslip.create(
+                        {
+                            "period_id": period.id,
+                            "employee_id": employee.id,
+                            "wage_base": employee.th_wage or 0.0,
+                        }
+                    )
+                else:
+                    slip.write({"wage_base": employee.th_wage or 0.0})
+                slip.line_ids.unlink()
+                seq = 10
+                lines = []
+                taxable_extra = 0.0
+                for inp in period.input_ids.filtered(
+                    lambda i: i.employee_id == employee and i.state == "confirmed"
+                ):
+                    cat = inp.input_type_id.category
+                    amount = inp.amount or 0.0
+                    if cat in ("earning", "other") and amount:
+                        line_cat = "earning"
+                        if cat == "earning" or inp.input_type_id.code in (
+                            "bonus",
+                            "commission",
+                            "other_in",
+                        ):
+                            taxable_extra += amount
+                    elif cat in ("deduction",) or inp.input_type_id.code in (
+                        "deduction",
+                        "advance",
+                        "loan",
+                        "other_out",
+                    ):
+                        line_cat = "deduction"
+                    elif cat == "time":
+                        line_cat = "info"
+                    else:
+                        line_cat = "earning" if amount >= 0 else "deduction"
+                    lines.append(
+                        {
+                            "payslip_id": slip.id,
+                            "sequence": seq,
+                            "code": inp.input_type_id.code,
+                            "name": inp.name,
+                            "category": line_cat,
+                            "amount": abs(amount) if line_cat == "deduction" else amount,
+                        }
+                    )
+                    seq += 10
+                iess_base = (slip.wage_base or 0.0) + taxable_extra
+                if iess_rate and iess_base:
+                    lines.append(
+                        {
+                            "payslip_id": slip.id,
+                            "sequence": seq,
+                            "code": "iess_personal",
+                            "name": _("IESS personal (parametrizado)"),
+                            "category": "deduction",
+                            "amount": round(iess_base * iess_rate, 2),
+                        }
+                    )
+                for vals in lines:
+                    Line.create(vals)
+                slip.state = "computed"
+        return True

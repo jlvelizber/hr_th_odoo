@@ -9,6 +9,10 @@
         <field name="project_id" ref="hr_service_management.demo_payroll_project_sep2026"/>
     </record>
 
+    <record id="hr_service_management.demo_employee_1" model="hr.employee">
+        <field name="th_wage">450.0</field>
+    </record>
+
     <record id="demo_payroll_input_1" model="hr.ec.payroll.input">
         <field name="period_id" ref="demo_payroll_period_sep2026"/>
         <field name="employee_id" ref="hr_service_management.demo_employee_1"/>

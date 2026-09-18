@@ -49,6 +49,7 @@
                     <button name="action_set_approved" string="Aprobar" type="object" invisible="state != 'review'"/>
                     <button name="action_set_delivered" string="Entregada" type="object" invisible="state != 'approved'"/>
                     <button name="action_set_closed" string="Cerrar" type="object" invisible="state not in ('delivered', 'approved')" class="btn-primary"/>
+                    <button name="action_compute_payslips" string="Calcular roles" type="object" invisible="state == 'closed'" class="btn-secondary"/>
                     <field name="state" widget="statusbar" statusbar_visible="pending,collecting,processing,review,approved,delivered,closed"/>
                 </header>
                 <sheet>
@@ -58,6 +59,9 @@
                         </button>
                         <button type="object" name="action_open_project" class="oe_stat_button" icon="fa-tasks" invisible="not project_id">
                             <span class="o_stat_text">Checklist</span>
+                        </button>
+                        <button type="object" name="action_open_payslips" class="oe_stat_button" icon="fa-money">
+                            <field name="payslip_count" widget="statinfo" string="Roles"/>
                         </button>
                     </div>
                     <group>

@@ -8,3 +8,7 @@ access_hr_ec_payroll_input_manager,hr.ec.payroll.input manager,model_hr_ec_payro
 access_hr_ec_payroll_input_type_user,hr.ec.payroll.input.type user,model_hr_ec_payroll_input_type,hr_service_management.group_hr_th_user,1,0,0,0
 access_hr_ec_payroll_input_type_payroll,hr.ec.payroll.input.type payroll,model_hr_ec_payroll_input_type,hr_service_management.group_hr_th_payroll,1,0,0,0
 access_hr_ec_payroll_input_type_manager,hr.ec.payroll.input.type manager,model_hr_ec_payroll_input_type,hr_service_management.group_hr_th_manager,1,1,1,1
+access_hr_ec_payroll_payslip_payroll,hr.ec.payroll.payslip payroll,model_hr_ec_payroll_payslip,hr_service_management.group_hr_th_payroll,1,1,1,0
+access_hr_ec_payroll_payslip_manager,hr.ec.payroll.payslip manager,model_hr_ec_payroll_payslip,hr_service_management.group_hr_th_manager,1,1,1,1
+access_hr_ec_payroll_payslip_line_payroll,hr.ec.payroll.payslip.line payroll,model_hr_ec_payroll_payslip_line,hr_service_management.group_hr_th_payroll,1,1,1,0
+access_hr_ec_payroll_payslip_line_manager,hr.ec.payroll.payslip.line manager,model_hr_ec_payroll_payslip_line,hr_service_management.group_hr_th_manager,1,1,1,1

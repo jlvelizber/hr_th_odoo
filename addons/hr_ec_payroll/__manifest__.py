@@ -1,8 +1,8 @@
 {
     "name": "Nómina operativa Ecuador (TH)",
-    "version": "17.0.1.0.0",
+    "version": "17.0.3.0.0",
     "category": "Human Resources/Payroll",
-    "summary": "Períodos de nómina por cliente, novedades y estados (sin motor legal completo)",
+    "summary": "Períodos, novedades, cálculo parametrizado de roles e informes",
     "author": "Consultora TH",
     "license": "LGPL-3",
     "depends": [
@@ -16,10 +16,15 @@
         "data/hr_ec_payroll_input_type_data.xml",
         "views/hr_ec_payroll_period_views.xml",
         "views/hr_ec_payroll_input_views.xml",
+        "views/hr_ec_payroll_payslip_views.xml",
         "views/hr_ec_payroll_menus.xml",
         "views/res_partner_views.xml",
         "views/hr_service_contract_views.xml",
+        "views/hr_employee_views.xml",
+        "views/res_company_views.xml",
+        "views/hr_th_summary_views.xml",
         "report/hr_ec_payroll_reports.xml",
+        "report/hr_ec_payroll_payslip_report.xml",
     ],
     "demo": [
         "demo/demo_payroll.xml",

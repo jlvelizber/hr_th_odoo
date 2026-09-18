@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_ec_payroll_payslip_tree" model="ir.ui.view">
+        <field name="name">hr.ec.payroll.payslip.tree</field>
+        <field name="model">hr.ec.payroll.payslip</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="period_id"/>
+                <field name="partner_id"/>
+                <field name="employee_id"/>
+                <field name="total_earnings"/>
+                <field name="total_deductions"/>
+                <field name="net_pay"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hr_ec_payroll_payslip_form" model="ir.ui.view">
+        <field name="name">hr.ec.payroll.payslip.form</field>
+        <field name="model">hr.ec.payroll.payslip</field>
+        <field name="arch" type="xml">
+            <form string="Rol de pago">
+                <header>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="period_id"/>
+                        <field name="employee_id"/>
+                        <field name="wage_base"/>
+                        <field name="total_earnings"/>
+                        <field name="total_deductions"/>
+                        <field name="net_pay"/>
+                    </group>
+                    <field name="line_ids">
+                        <tree>
+                            <field name="sequence" widget="handle"/>
+                            <field name="code"/>
+                            <field name="name"/>
+                            <field name="category"/>
+                            <field name="amount"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_hr_ec_payroll_payslip" model="ir.actions.act_window">
+        <field name="name">Roles de pago</field>
+        <field name="res_model">hr.ec.payroll.payslip</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

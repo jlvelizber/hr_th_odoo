@@ -10,4 +10,24 @@
         <field name="model_id" ref="model_hr_ec_payroll_input"/>
         <field name="domain_force">[('period_id.company_id', 'in', company_ids)]</field>
     </record>
+    <record id="rule_hr_ec_payroll_payslip_company" model="ir.rule">
+        <field name="name">Roles nómina: multi-compañía</field>
+        <field name="model_id" ref="model_hr_ec_payroll_payslip"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_hr_ec_payroll_payslip_line_company" model="ir.rule">
+        <field name="name">Líneas rol: multi-compañía</field>
+        <field name="model_id" ref="model_hr_ec_payroll_payslip_line"/>
+        <field name="domain_force">[('payslip_id.company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_hr_service_contract_payroll_only" model="ir.rule">
+        <field name="name">Contratos: rol nómina solo servicios nómina</field>
+        <field name="model_id" ref="hr_service_management.model_hr_service_contract"/>
+        <field name="domain_force">[('service_kind', '=', 'payroll')]</field>
+        <field name="groups" eval="[(4, ref('hr_service_management.group_hr_th_payroll'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
 </odoo>
